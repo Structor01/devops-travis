@@ -9,3 +9,16 @@ before_install:
 script:
   - docker run -e CI=true structor01/devops-travis npm run test
 
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker"
+  env: "DevopsDocker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-715765763915"
+  bucket_path: "docker"
+  on:
+    branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
